@@ -1,5 +1,6 @@
 'use strict'
 
+const connect = require('gulp-connect');
 const del = require('del')
 const gulp = require('gulp')
 const runSequence = require('run-sequence')
@@ -7,18 +8,22 @@ const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
 
 const distributionPath = './dist'
+const sassRelativePath = '/styles'
 const sourcePath = './src'
 
-const sassEntryPath = `${sourcePath}/styles/main.scss`
-const staticPath = `${sourcePath}/**/*`
+const allDistributionPath = `${distributionPath}/**/*`
+const allSassPath = `${sourcePath}${sassRelativePath}/**/*.scss`
+const allSourcePath = `${sourcePath}/**/*`
+const sassEntryPath = `${sourcePath}${sassRelativePath}/main.scss`
+const staticPath = [allSourcePath, `!${allSassPath}`]
 
 gulp.task('clean:all', () => (
-  del(`${distributionPath}/**/*`)
-))
+  del(allDistributionPath)
+)
 
 gulp.task('clean:temp', () => (
-  del(`${distributionPath}/styles`)
-))
+  del(`${distributionPath}${sassRelativePath}`)
+)
 
 gulp.task('sass:compile', () => (
   gulp.src(sassEntryPath)
@@ -30,15 +35,52 @@ gulp.task('sass:compile', () => (
     .pipe(gulp.dest(`${distributionPath}/css`))
 ))
 
+gulp.task('sass:watch', () => (
+  gulp.watch(allSassPath, ['sass:compile'])
+))
+
 gulp.task('static:copy', () => (
-  gulp.src(staticPath)
+  gulp.src(allSourcePath)
     .pipe(gulp.dest(distributionPath))
 ))
 
-gulp.task('build', () => (
+gulp.task('static:watch', () => (
+   gulp.watch(staticPath, ['build'])
+))
+
+gulp.task('dist', () => (
   runSequence(
     'clean:all',
-    ['sass:compile', 'static:copy'],
-    'clean:temp',
+    'build',
+    'clean:temp'
   )
+))
+
+gulp.task('build', ['sass:compile', 'static:copy'])
+
+gulp.task('watch', () => (
+  runSequence(
+    'clean:all',
+    'build',
+    [
+      'static:watch',
+      'sass:watch',
+      'livereload:watch',
+      'connect'
+    ]
+  )
+))
+
+gulp.task('connect', () => connect.server({
+  root: distributionPath,
+  livereload: true
+}))
+
+gulp.task('livereload', () => (
+  gulp.src(allDistributionPath)
+    .pipe(connect.reload())
+))
+
+gulp.task('livereload:watch', () => (
+  gulp.watch(allDistributionPath, ['livereload'])
 ))
