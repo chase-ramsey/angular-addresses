@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
-    <h1>Hello World</h1>
+    <div ng-app="app">
+      <div ng-controller="MainCtrl as main">
+        <h1>{{main.text}}</h1>
+      </div>
+    </div>
+    <script src="/lib/angular/angular.min.js"></script>
+    <script src="/app/main.js"></script>
   </body>
 </html>
