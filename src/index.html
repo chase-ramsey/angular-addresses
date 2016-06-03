@@ -6,11 +6,10 @@
   </head>
   <body>
     <div ng-app="app">
-      <div ng-controller="MainCtrl as main">
-        <h1>{{main.text}}</h1>
-      </div>
+      <div ng-view></div>
     </div>
     <script src="/lib/angular/angular.min.js"></script>
+    <script src="/lib/angular-route/angular-route.min.js"></script>
     <script src="/app/main.js"></script>
   </body>
 </html>
