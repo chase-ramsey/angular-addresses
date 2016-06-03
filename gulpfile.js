@@ -17,13 +17,20 @@ const allSourcePath = `${sourcePath}/**/*`
 const sassEntryPath = `${sourcePath}${sassRelativePath}/main.scss`
 const staticPath = [allSourcePath, `!${allSassPath}`]
 
-gulp.task('clean:all', () => (
-  del(allDistributionPath)
-)
+// CLEANERS
 
-gulp.task('clean:temp', () => (
-  del(`${distributionPath}${sassRelativePath}`)
-)
+gulp.task('clean:all', () => del(allDistributionPath))
+
+gulp.task('clean:temp', () => del(`${distributionPath}${sassRelativePath}`))
+
+// COPIERS
+
+gulp.task('static:copy', () => (
+  gulp.src(allSourcePath)
+    .pipe(gulp.dest(distributionPath))
+))
+
+// COMPILERS
 
 gulp.task('sass:compile', () => (
   gulp.src(sassEntryPath)
@@ -35,28 +42,7 @@ gulp.task('sass:compile', () => (
     .pipe(gulp.dest(`${distributionPath}/css`))
 ))
 
-gulp.task('sass:watch', () => (
-  gulp.watch(allSassPath, ['sass:compile'])
-))
-
-gulp.task('static:copy', () => (
-  gulp.src(allSourcePath)
-    .pipe(gulp.dest(distributionPath))
-))
-
-gulp.task('static:watch', () => (
-   gulp.watch(staticPath, ['build'])
-))
-
-gulp.task('dist', () => (
-  runSequence(
-    'clean:all',
-    'build',
-    'clean:temp'
-  )
-))
-
-gulp.task('build', ['sass:compile', 'static:copy'])
+// WATCHERS
 
 gulp.task('watch', () => (
   runSequence(
@@ -71,6 +57,20 @@ gulp.task('watch', () => (
   )
 ))
 
+gulp.task('livereload:watch', () => (
+  gulp.watch(allDistributionPath, ['livereload'])
+))
+
+gulp.task('sass:watch', () => (
+  gulp.watch(allSassPath, ['sass:compile'])
+))
+
+gulp.task('static:watch', () => (
+   gulp.watch(staticPath, ['build'])
+))
+
+// SERVERS
+
 gulp.task('connect', () => connect.server({
   root: distributionPath,
   livereload: true
@@ -81,6 +81,14 @@ gulp.task('livereload', () => (
     .pipe(connect.reload())
 ))
 
-gulp.task('livereload:watch', () => (
-  gulp.watch(allDistributionPath, ['livereload'])
+// BUILDERS
+
+gulp.task('build', ['sass:compile', 'static:copy'])
+
+gulp.task('dist', () => (
+  runSequence(
+    'clean:all',
+    'build',
+    'clean:temp'
+  )
 ))
