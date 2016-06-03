@@ -1,0 +1,20 @@
+{
+  "name": "angular-addresses",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sscotth/angular-addresses.git"
+  },
+  "keywords": [],
+  "author": "Scott Humphries <npm@sscotth.io> (https://sscotth.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sscotth/angular-addresses/issues"
+  },
+  "homepage": "https://github.com/sscotth/angular-addresses#readme"
+}

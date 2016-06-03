@@ -1,0 +1,17 @@
+{
+  "name": "angular-addresses",
+  "homepage": "https://github.com/sscotth/angular-addresses",
+  "authors": [
+    "Scott Humphries <git@sscotth.io>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
