@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "http-server src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/sscotth/angular-addresses/issues"
   },
-  "homepage": "https://github.com/sscotth/angular-addresses#readme"
+  "homepage": "https://github.com/sscotth/angular-addresses#readme",
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  }
 }
