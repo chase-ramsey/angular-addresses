@@ -1,0 +1,16 @@
+{
+		"data": [
+			{
+				"name": "Chase Ramsey",
+				"phone": "(423) 284-3278",
+				"email": "ramsey.chase@gmail.com",
+				"twitter": "@not_chase"
+			},
+			{
+				"name": "Zak Spence",
+				"phone": "(757) 576-3400",
+				"email": "zakspence@gmail.com",
+				"twitter": "@its_ok_trust_me"
+			}
+		]
+}

@@ -3,7 +3,7 @@
 TODO:
 ADDRESSES
     Upload photos?
-    Table (Index of addresses)
+[ ] Table (Index of addresses)
         Names Addresses Phone # Email, Twitter, Snapchat
     Form (Create new address)
         All the form fields
@@ -16,4 +16,4 @@ AUTHENTICATION
     Register form
     Logout button
 
-Landing Page
+[x] Landing Page
