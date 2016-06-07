@@ -1,5 +1,5 @@
 angular.module('app')
-  .factory('AddressFactory', function() {
+  .factory('AddressFactory', function($timeout) {
 
       let list = [
         {
@@ -18,7 +18,7 @@ angular.module('app')
 
       return {
         all: function() {
-          return list;
+          return $timeout().then(() => list);
         },
 
         get: function(id) {
