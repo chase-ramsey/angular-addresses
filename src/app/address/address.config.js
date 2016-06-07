@@ -4,17 +4,17 @@ angular.module('app')
 			.when('/addresses', {
         controller: 'AddressCtrl',
         controllerAs: 'address',
-        templateUrl: 'app/partials/addresses.html',
+        templateUrl: 'app/address/index.html',
       })
       .when('/addresses/new', {
         controller: 'NewAddressCtrl',
         controllerAs: 'address',
-        templateUrl: 'app/partials/newAddress.html'
+        templateUrl: 'app/address/form.html'
       })
       .when('/addresses/:id/edit', {
         controller: 'EditAddressCtrl',
         controllerAs: 'address',
-        templateUrl: 'app/partials/newAddress.html'
+        templateUrl: 'app/address/form.html'
       })
 	)
 )

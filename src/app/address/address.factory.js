@@ -6,13 +6,13 @@ angular.module('app')
           "name": "Chase Ramsey",
           "phone": "4232843278",
           "email": "ramsey.chase@gmail.com",
-          "twitter": "@not_chase"
+          "twitter": "not_chase"
         },
         {
           "name": "Zak Spence",
           "phone": "7575763400",
           "email": "zakspence@gmail.com",
-          "twitter": "@its_ok_trust_me"
+          "twitter": "its_ok_trust_me"
         }
       ];
 
